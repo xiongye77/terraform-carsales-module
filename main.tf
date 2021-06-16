@@ -6,6 +6,7 @@ module alb {
 source = "./modules/alb"
 vpc_id = module.vpc.CarSales-VPC-ID
 vpc_subnets  = module.vpc.public_subnets
+certificate_arn    = module.acm.certificate_arn
 }
 
 module key {
@@ -58,13 +59,9 @@ alb_dns_zone_id = module.alb.alb_dns_zone_id
 }
 
 module acm {
-source  = "terraform-aws-modules/acm/aws"
-version = "2.14.0"
+source  = "./modules/acm"
 
-domain_name  = trimsuffix(module.alb.alb_dns_name, ".")
+#domain_name  = trimsuffix(module.alb.alb_dns_name, ".")
 zone_id      = module.alb.alb_dns_zone_id
 
-subject_alternative_names = [
-    "*.aconex.design"
-]
 }
