@@ -2,6 +2,7 @@
 git clone https://github.com/xiongye77/terraform-carsales-module.git
 
 my terraform version as following 
+
 [ec2-user@ip-192-168-23-47 terraform-carsales-module]$ terraform --version
 Terraform v0.15.5
 on linux_amd64
