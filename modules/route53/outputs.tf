@@ -10,3 +10,8 @@ output "mydomain_name" {
   value = data.aws_route53_zone.mydomain.name
 }
 
+output "alb_dns_record" {
+  description = " The Hosted Zone name of the desired Hosted Zone."
+  value = "${aws_route53_record.default_dns.name}"
+}
+

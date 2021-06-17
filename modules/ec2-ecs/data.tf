@@ -1,4 +1,5 @@
 data "aws_caller_identity" "current" { }
+data "aws_region" "current" {}
 #  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
 data "aws_ami" "aws_optimized_ecs" {
   most_recent = true

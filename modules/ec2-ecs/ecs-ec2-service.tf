@@ -144,8 +144,8 @@ resource "aws_ecs_task_definition" "carsales1" {
             "readOnly": false
           }
         ],
-    "secrets": [{"name": "db_url","valueFrom": "arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/db-host"},
-          {"name": "DATABASE_PASSWORD", "valueFrom": "arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/rds-password"
+    "secrets": [{"name": "db_url","valueFrom": "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/db-host"},
+          {"name": "DATABASE_PASSWORD", "valueFrom": "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/rds-password"
     }],
     "environment": [],
     "logConfiguration": {
@@ -153,7 +153,7 @@ resource "aws_ecs_task_definition" "carsales1" {
       "options": {
         "awslogs-create-group":"true",
         "awslogs-group": "carsales1",
-        "awslogs-region": "${var.region}",
+        "awslogs-region": "${data.aws_region.current.name}",
         "awslogs-stream-prefix": "carsales1-log-stream"
       }
     }
@@ -200,8 +200,8 @@ resource "aws_ecs_task_definition" "carsales2" {
             "readOnly": false
           }
         ],
-    "secrets": [{"name": "db_url","valueFrom": "arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/db-host"},
-                {"name": "DATABASE_PASSWORD", "valueFrom": "arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/rds-password"
+    "secrets": [{"name": "db_url","valueFrom": "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/db-host"},
+                {"name": "DATABASE_PASSWORD", "valueFrom": "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/production/myapp/rds-password"
     }],
     "environment": [],
     "logConfiguration": {
@@ -209,7 +209,7 @@ resource "aws_ecs_task_definition" "carsales2" {
       "options": {
         "awslogs-create-group":"true",
         "awslogs-group": "carsales2",
-        "awslogs-region": "${var.region}",
+        "awslogs-region": "${data.aws_region.current.name}",
         "awslogs-stream-prefix": "carsales-app-log-stream"
       }
     }

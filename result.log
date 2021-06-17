@@ -1,0 +1,2700 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create
+ [36m<=[0m read (data resources)
+[0m
+Terraform will perform the following actions:
+
+[1m  # module.alb.aws_lb.carsales_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb" "carsales_alb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdrop_invalid_header_fields[0m[0m = false
+      [32m+[0m [0m[1m[0menable_deletion_protection[0m[0m = false
+      [32m+[0m [0m[1m[0menable_http2[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m               = 60
+      [32m+[0m [0m[1m[0minternal[0m[0m                   = false
+      [32m+[0m [0m[1m[0mip_address_type[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_type[0m[0m         = "application"
+      [32m+[0m [0m[1m[0mname[0m[0m                       = "carsales-alb"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnets[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                       = {
+          [32m+[0m [0m"Name"      = "CarSales Application Load Balancer"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                   = {
+          [32m+[0m [0m"Name"      = "CarSales Application Load Balancer"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                    = (known after apply)
+
+      [32m+[0m [0msubnet_mapping {
+          [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+          [32m+[0m [0m[1m[0mipv6_address[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0moutpost_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mprivate_ipv4_address[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # module.alb.aws_lb_listener.carsales_http[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener" "carsales_http" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTP"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m          = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+    }
+
+[1m  # module.alb.aws_lb_listener_rule.carsales_test1_http[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener_rule" "carsales_test1_http" {
+      [32m+[0m [0m[1m[0marn[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mlistener_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mpriority[0m[0m     = 100
+      [32m+[0m [0m[1m[0mtags_all[0m[0m     = (known after apply)
+
+      [32m+[0m [0maction {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+
+      [32m+[0m [0mcondition {
+
+          [32m+[0m [0mpath_pattern {
+              [32m+[0m [0m[1m[0mvalues[0m[0m = [
+                  [32m+[0m [0m"/carsales1/",
+                ]
+            }
+        }
+    }
+
+[1m  # module.alb.aws_lb_listener_rule.carsales_test2_http[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener_rule" "carsales_test2_http" {
+      [32m+[0m [0m[1m[0marn[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mlistener_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mpriority[0m[0m     = 200
+      [32m+[0m [0m[1m[0mtags_all[0m[0m     = (known after apply)
+
+      [32m+[0m [0maction {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+
+      [32m+[0m [0mcondition {
+
+          [32m+[0m [0mpath_pattern {
+              [32m+[0m [0m[1m[0mvalues[0m[0m = [
+                  [32m+[0m [0m"/carsales2/",
+                ]
+            }
+        }
+    }
+
+[1m  # module.alb.aws_lb_target_group.carsales-back-end-tg-1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group" "carsales-back-end-tg-1" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "carsales-back-end-tg-1"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 80
+      [32m+[0m [0m[1m[0mpreserve_client_ip[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTP"
+      [32m+[0m [0m[1m[0mprotocol_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtags[0m[0m                               = {
+          [32m+[0m [0m"Name"      = "CarSales Back End Target Group 1"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                           = {
+          [32m+[0m [0m"Name"      = "CarSales Back End Target Group 1"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = (known after apply)
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = true
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = 2
+          [32m+[0m [0m[1m[0minterval[0m[0m            = 10
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mpath[0m[0m                = (known after apply)
+          [32m+[0m [0m[1m[0mport[0m[0m                = "traffic-port"
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = "HTTP"
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = 2
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = 86400
+          [32m+[0m [0m[1m[0menabled[0m[0m         = true
+          [32m+[0m [0m[1m[0mtype[0m[0m            = "lb_cookie"
+        }
+    }
+
+[1m  # module.alb.aws_lb_target_group.carsales-back-end-tg-2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group" "carsales-back-end-tg-2" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = 30
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "carsales-back-end-tg-2"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 80
+      [32m+[0m [0m[1m[0mpreserve_client_ip[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTP"
+      [32m+[0m [0m[1m[0mprotocol_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtags[0m[0m                               = {
+          [32m+[0m [0m"Name"      = "CarSales Back End Target Group 2"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                           = {
+          [32m+[0m [0m"Name"      = "CarSales Back End Target Group 2"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = (known after apply)
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = true
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = 2
+          [32m+[0m [0m[1m[0minterval[0m[0m            = 10
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mpath[0m[0m                = (known after apply)
+          [32m+[0m [0m[1m[0mport[0m[0m                = "traffic-port"
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = "HTTP"
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = 2
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0menabled[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # module.alb.aws_security_group.carsales_alb_sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "carsales_alb_sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Managed by Terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 443
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 443
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name"      = "CarSales ALB Security Group"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name"      = "CarSales ALB Security Group"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.bastion.aws_instance.carsales_bastion_host-1a[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_instance" "carsales_bastion_host-1a" {
+      [32m+[0m [0m[1m[0mami[0m[0m                                  = "ami-0ad704c126371a549"
+      [32m+[0m [0m[1m[0marn[0m[0m                                  = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m          = true
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mget_password_data[0m[0m                    = false
+      [32m+[0m [0m[1m[0mhost_id[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0minstance_initiated_shutdown_behavior[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0minstance_state[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0minstance_type[0m[0m                        = "t2.medium"
+      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                             = "carsales_ecs_public_key"
+      [32m+[0m [0m[1m[0moutpost_arn[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mpassword_data[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mplacement_group[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0msecondary_private_ips[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0msource_dest_check[0m[0m                    = true
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                                 = {
+          [32m+[0m [0m"Name"      = "CarSales Bastion Host - 1A"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                             = {
+          [32m+[0m [0m"Name"      = "CarSales Bastion Host - 1A"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtenancy[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m               = (known after apply)
+
+      [32m+[0m [0mcapacity_reservation_specification {
+          [32m+[0m [0m[1m[0mcapacity_reservation_preference[0m[0m = (known after apply)
+
+          [32m+[0m [0mcapacity_reservation_target {
+              [32m+[0m [0m[1m[0mcapacity_reservation_id[0m[0m = (known after apply)
+            }
+        }
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mtags[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0menclave_options {
+          [32m+[0m [0m[1m[0menabled[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mephemeral_block_device {
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
+          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mmetadata_options {
+          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
+        }
+
+      [32m+[0m [0mnetwork_interface {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
+          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtags[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # module.bastion.aws_security_group.carsales_bastion_sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "carsales_bastion_sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Managed by Terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 22
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 22
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name"      = "CarSales Bastion Security Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name"      = "CarSales Bastion Security Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_cpu[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_appautoscaling_policy" "carsales-dealer_to_target_cpu" {
+      [32m+[0m [0m[1m[0marn[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m               = "carsales-dealer-to-target-cpu"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m        = "TargetTrackingScaling"
+      [32m+[0m [0m[1m[0mresource_id[0m[0m        = "service/carsales-cluster/carsales-dealer-service"
+      [32m+[0m [0m[1m[0mscalable_dimension[0m[0m = "ecs:service:DesiredCount"
+      [32m+[0m [0m[1m[0mservice_namespace[0m[0m  = "ecs"
+
+      [32m+[0m [0mtarget_tracking_scaling_policy_configuration {
+          [32m+[0m [0m[1m[0mdisable_scale_in[0m[0m = false
+          [32m+[0m [0m[1m[0mtarget_value[0m[0m     = 80
+
+          [32m+[0m [0mpredefined_metric_specification {
+              [32m+[0m [0m[1m[0mpredefined_metric_type[0m[0m = "ECSServiceAverageCPUUtilization"
+            }
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_memory[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_appautoscaling_policy" "carsales-dealer_to_target_memory" {
+      [32m+[0m [0m[1m[0marn[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m               = "carsales-dealer-to-target-memory"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m        = "TargetTrackingScaling"
+      [32m+[0m [0m[1m[0mresource_id[0m[0m        = "service/carsales-cluster/carsales-dealer-service"
+      [32m+[0m [0m[1m[0mscalable_dimension[0m[0m = "ecs:service:DesiredCount"
+      [32m+[0m [0m[1m[0mservice_namespace[0m[0m  = "ecs"
+
+      [32m+[0m [0mtarget_tracking_scaling_policy_configuration {
+          [32m+[0m [0m[1m[0mdisable_scale_in[0m[0m = false
+          [32m+[0m [0m[1m[0mtarget_value[0m[0m     = 80
+
+          [32m+[0m [0mpredefined_metric_specification {
+              [32m+[0m [0m[1m[0mpredefined_metric_type[0m[0m = "ECSServiceAverageMemoryUtilization"
+            }
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_appautoscaling_target.carsales-dealer_to_target[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_appautoscaling_target" "carsales-dealer_to_target" {
+      [32m+[0m [0m[1m[0mid[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mmax_capacity[0m[0m       = 5
+      [32m+[0m [0m[1m[0mmin_capacity[0m[0m       = 1
+      [32m+[0m [0m[1m[0mresource_id[0m[0m        = "service/carsales-cluster/carsales-dealer-service"
+      [32m+[0m [0m[1m[0mrole_arn[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mscalable_dimension[0m[0m = "ecs:service:DesiredCount"
+      [32m+[0m [0m[1m[0mservice_namespace[0m[0m  = "ecs"
+    }
+
+[1m  # module.ec2-ecs.aws_autoscaling_group.ecs-cluster[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "ecs-cluster" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = 30
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 2
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = false
+      [32m+[0m [0m[1m[0mforce_delete_warm_pool[0m[0m    = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 30
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = "EC2"
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = "carsales-cluster"
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 4
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "carsales_auto_scaling_group"
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtermination_policies[0m[0m      = [
+          [32m+[0m [0m"OldestInstance",
+        ]
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "Name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-in[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "ecs-cluster-scale-in" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m         = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m  = "carsales_auto_scaling_group"
+      [32m+[0m [0m[1m[0mcooldown[0m[0m                = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                    = "ecs-cluster-scale-in"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m             = "SimpleScaling"
+      [32m+[0m [0m[1m[0mscaling_adjustment[0m[0m      = -1
+    }
+
+[1m  # module.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-out[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "ecs-cluster-scale-out" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m         = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m  = "carsales_auto_scaling_group"
+      [32m+[0m [0m[1m[0mcooldown[0m[0m                = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                    = "ecs-cluster-scale-out"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m             = "SimpleScaling"
+      [32m+[0m [0m[1m[0mscaling_adjustment[0m[0m      = 1
+    }
+
+[1m  # module.ec2-ecs.aws_cloudwatch_metric_alarm.memory-high[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_cloudwatch_metric_alarm" "memory-high" {
+      [32m+[0m [0m[1m[0mactions_enabled[0m[0m                       = true
+      [32m+[0m [0m[1m[0malarm_actions[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0malarm_description[0m[0m                     = "This metric monitors ec2 memory for high utilization on agent hosts"
+      [32m+[0m [0m[1m[0malarm_name[0m[0m                            = "mem-util-high-agents"
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mcomparison_operator[0m[0m                   = "GreaterThanOrEqualToThreshold"
+      [32m+[0m [0m[1m[0mdimensions[0m[0m                            = {
+          [32m+[0m [0m"AutoScalingGroupName" = "carsales_auto_scaling_group"
+        }
+      [32m+[0m [0m[1m[0mevaluate_low_sample_count_percentiles[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mevaluation_periods[0m[0m                    = 2
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_name[0m[0m                           = "MemoryUtilization"
+      [32m+[0m [0m[1m[0mnamespace[0m[0m                             = "System/Linux"
+      [32m+[0m [0m[1m[0mperiod[0m[0m                                = 300
+      [32m+[0m [0m[1m[0mstatistic[0m[0m                             = "Average"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mthreshold[0m[0m                             = 80
+      [32m+[0m [0m[1m[0mtreat_missing_data[0m[0m                    = "missing"
+    }
+
+[1m  # module.ec2-ecs.aws_cloudwatch_metric_alarm.memory-low[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_cloudwatch_metric_alarm" "memory-low" {
+      [32m+[0m [0m[1m[0mactions_enabled[0m[0m                       = true
+      [32m+[0m [0m[1m[0malarm_actions[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0malarm_description[0m[0m                     = "This metric monitors ec2 memory for low utilization on agent hosts"
+      [32m+[0m [0m[1m[0malarm_name[0m[0m                            = "mem-util-low-agents"
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mcomparison_operator[0m[0m                   = "LessThanOrEqualToThreshold"
+      [32m+[0m [0m[1m[0mdimensions[0m[0m                            = {
+          [32m+[0m [0m"AutoScalingGroupName" = "carsales_auto_scaling_group"
+        }
+      [32m+[0m [0m[1m[0mevaluate_low_sample_count_percentiles[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mevaluation_periods[0m[0m                    = 2
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_name[0m[0m                           = "MemoryUtilization"
+      [32m+[0m [0m[1m[0mnamespace[0m[0m                             = "System/Linux"
+      [32m+[0m [0m[1m[0mperiod[0m[0m                                = 300
+      [32m+[0m [0m[1m[0mstatistic[0m[0m                             = "Average"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mthreshold[0m[0m                             = 20
+      [32m+[0m [0m[1m[0mtreat_missing_data[0m[0m                    = "missing"
+    }
+
+[1m  # module.ec2-ecs.aws_ecs_service.carsales-commerical-service[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_service" "carsales-commerical-service" {
+      [32m+[0m [0m[1m[0mcluster[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mdeployment_maximum_percent[0m[0m         = 200
+      [32m+[0m [0m[1m[0mdeployment_minimum_healthy_percent[0m[0m = 100
+      [32m+[0m [0m[1m[0mdesired_count[0m[0m                      = 1
+      [32m+[0m [0m[1m[0menable_ecs_managed_tags[0m[0m            = false
+      [32m+[0m [0m[1m[0menable_execute_command[0m[0m             = false
+      [32m+[0m [0m[1m[0miam_role[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_type[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "carsales-commerical-service"
+      [32m+[0m [0m[1m[0mplatform_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mscheduling_strategy[0m[0m                = "REPLICA"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mtask_definition[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mwait_for_steady_state[0m[0m              = false
+
+      [32m+[0m [0mload_balancer {
+          [32m+[0m [0m[1m[0mcontainer_name[0m[0m   = "carsales2"
+          [32m+[0m [0m[1m[0mcontainer_port[0m[0m   = 80
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_ecs_service.carsales-dealer-service[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_service" "carsales-dealer-service" {
+      [32m+[0m [0m[1m[0mcluster[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mdeployment_maximum_percent[0m[0m         = 200
+      [32m+[0m [0m[1m[0mdeployment_minimum_healthy_percent[0m[0m = 100
+      [32m+[0m [0m[1m[0mdesired_count[0m[0m                      = 1
+      [32m+[0m [0m[1m[0menable_ecs_managed_tags[0m[0m            = false
+      [32m+[0m [0m[1m[0menable_execute_command[0m[0m             = false
+      [32m+[0m [0m[1m[0miam_role[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_type[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "carsales-dealer-service"
+      [32m+[0m [0m[1m[0mplatform_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mscheduling_strategy[0m[0m                = "REPLICA"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mtask_definition[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mwait_for_steady_state[0m[0m              = false
+
+      [32m+[0m [0mload_balancer {
+          [32m+[0m [0m[1m[0mcontainer_name[0m[0m   = "carsales1"
+          [32m+[0m [0m[1m[0mcontainer_port[0m[0m   = 80
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_ecs_task_definition.carsales1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_task_definition" "carsales1" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mcontainer_definitions[0m[0m = jsonencode(
+            [
+              [32m+[0m [0m{
+                  [32m+[0m [0mcpu              = 1
+                  [32m+[0m [0menvironment      = []
+                  [32m+[0m [0messential        = true
+                  [32m+[0m [0mimage            = "dbaxy770928/carsales1:latest"
+                  [32m+[0m [0mlinks            = []
+                  [32m+[0m [0mlogConfiguration = {
+                      [32m+[0m [0mlogDriver = "awslogs"
+                      [32m+[0m [0moptions   = {
+                          [32m+[0m [0mawslogs-create-group  = "true"
+                          [32m+[0m [0mawslogs-group         = "carsales1"
+                          [32m+[0m [0mawslogs-region        = "ap-south-1"
+                          [32m+[0m [0mawslogs-stream-prefix = "carsales1-log-stream"
+                        }
+                    }
+                  [32m+[0m [0mmemory           = 256
+                  [32m+[0m [0mmountPoints      = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mcontainerPath = "/efs"
+                          [32m+[0m [0mreadOnly      = false
+                          [32m+[0m [0msourceVolume  = "efs-carsales-demo"
+                        },
+                    ]
+                  [32m+[0m [0mname             = "carsales1"
+                  [32m+[0m [0mportMappings     = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mcontainerPort = 80
+                          [32m+[0m [0mhostPort      = 0
+                          [32m+[0m [0mprotocol      = "tcp"
+                        },
+                    ]
+                  [32m+[0m [0msecrets          = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname      = "db_url"
+                          [32m+[0m [0mvalueFrom = "arn:aws:ssm:ap-south-1:207880003428:parameter/production/myapp/db-host"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname      = "DATABASE_PASSWORD"
+                          [32m+[0m [0mvalueFrom = "arn:aws:ssm:ap-south-1:207880003428:parameter/production/myapp/rds-password"
+                        },
+                    ]
+                },
+            ]
+        )
+      [32m+[0m [0m[1m[0mexecution_role_arn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mfamily[0m[0m                = "carsales1"
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_mode[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mrevision[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtask_role_arn[0m[0m         = (known after apply)
+
+      [32m+[0m [0mvolume {
+          [32m+[0m [0m[1m[0mname[0m[0m = "efs-carsales-demo"
+
+          [32m+[0m [0mefs_volume_configuration {
+              [32m+[0m [0m[1m[0mfile_system_id[0m[0m = (known after apply)
+              [32m+[0m [0m[1m[0mroot_directory[0m[0m = "/"
+            }
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_ecs_task_definition.carsales2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_task_definition" "carsales2" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mcontainer_definitions[0m[0m = jsonencode(
+            [
+              [32m+[0m [0m{
+                  [32m+[0m [0mcpu              = 1
+                  [32m+[0m [0menvironment      = []
+                  [32m+[0m [0messential        = true
+                  [32m+[0m [0mimage            = "dbaxy770928/carsales2:latest"
+                  [32m+[0m [0mlinks            = []
+                  [32m+[0m [0mlogConfiguration = {
+                      [32m+[0m [0mlogDriver = "awslogs"
+                      [32m+[0m [0moptions   = {
+                          [32m+[0m [0mawslogs-create-group  = "true"
+                          [32m+[0m [0mawslogs-group         = "carsales2"
+                          [32m+[0m [0mawslogs-region        = "ap-south-1"
+                          [32m+[0m [0mawslogs-stream-prefix = "carsales-app-log-stream"
+                        }
+                    }
+                  [32m+[0m [0mmemory           = 256
+                  [32m+[0m [0mmountPoints      = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mcontainerPath = "/efs"
+                          [32m+[0m [0mreadOnly      = false
+                          [32m+[0m [0msourceVolume  = "efs-carsales-demo"
+                        },
+                    ]
+                  [32m+[0m [0mname             = "carsales2"
+                  [32m+[0m [0mportMappings     = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mcontainerPort = 80
+                          [32m+[0m [0mhostPort      = 0
+                          [32m+[0m [0mprotocol      = "tcp"
+                        },
+                    ]
+                  [32m+[0m [0msecrets          = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname      = "db_url"
+                          [32m+[0m [0mvalueFrom = "arn:aws:ssm:ap-south-1:207880003428:parameter/production/myapp/db-host"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname      = "DATABASE_PASSWORD"
+                          [32m+[0m [0mvalueFrom = "arn:aws:ssm:ap-south-1:207880003428:parameter/production/myapp/rds-password"
+                        },
+                    ]
+                },
+            ]
+        )
+      [32m+[0m [0m[1m[0mexecution_role_arn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mfamily[0m[0m                = "carsales2"
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_mode[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mrevision[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtask_role_arn[0m[0m         = (known after apply)
+
+      [32m+[0m [0mvolume {
+          [32m+[0m [0m[1m[0mname[0m[0m = "efs-carsales-demo"
+
+          [32m+[0m [0mefs_volume_configuration {
+              [32m+[0m [0m[1m[0mfile_system_id[0m[0m = (known after apply)
+              [32m+[0m [0m[1m[0mroot_directory[0m[0m = "/"
+            }
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_iam_instance_profile.ecs[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "ecs" {
+      [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m        = "ecs_instance_profile_prod"
+      [32m+[0m [0m[1m[0mpath[0m[0m        = "/"
+      [32m+[0m [0m[1m[0mrole[0m[0m        = "ecs_host_role_prod"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0munique_id[0m[0m   = (known after apply)
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role.ecs-demo-task-role[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role" "ecs-demo-task-role" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "ecs-tasks.amazonaws.com"
+                        }
+                      [32m+[0m [0mSid       = ""
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmanaged_policy_arns[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "ecs-demo-task-role"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role.ecs-host-role[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role" "ecs-host-role" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = [
+                              [32m+[0m [0m"ecs.amazonaws.com",
+                              [32m+[0m [0m"ec2.amazonaws.com",
+                            ]
+                        }
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2008-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmanaged_policy_arns[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "ecs_host_role_prod"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role.ecs-service-role[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role" "ecs-service-role" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = [
+                              [32m+[0m [0m"ecs.amazonaws.com",
+                              [32m+[0m [0m"ec2.amazonaws.com",
+                            ]
+                        }
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2008-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmanaged_policy_arns[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "ecs_service_role_prod"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role.ecs-task-execution-role[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role" "ecs-task-execution-role" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "ecs-tasks.amazonaws.com"
+                        }
+                      [32m+[0m [0mSid       = ""
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmanaged_policy_arns[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "ecs-task-execution-role"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role_policy.ecs-instance-role-policy[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role_policy" "ecs-instance-role-policy" {
+      [32m+[0m [0m[1m[0mid[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m   = "ecs_instance_role_policy"
+      [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction   = [
+                          [32m+[0m [0m"ecs:*",
+                          [32m+[0m [0m"ec2:*",
+                          [32m+[0m [0m"elasticloadbalancing:*",
+                          [32m+[0m [0m"ecr:*",
+                          [32m+[0m [0m"cloudwatch:*",
+                          [32m+[0m [0m"s3:*",
+                          [32m+[0m [0m"rds:*",
+                          [32m+[0m [0m"logs:*",
+                        ]
+                      [32m+[0m [0mEffect   = "Allow"
+                      [32m+[0m [0mResource = "*"
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mrole[0m[0m   = (known after apply)
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role_policy.ecs-service-role-policy[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role_policy" "ecs-service-role-policy" {
+      [32m+[0m [0m[1m[0mid[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m   = "ecs_service_role_policy"
+      [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction   = [
+                          [32m+[0m [0m"elasticloadbalancing:Describe*",
+                          [32m+[0m [0m"elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                          [32m+[0m [0m"elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                          [32m+[0m [0m"ec2:Describe*",
+                          [32m+[0m [0m"ec2:AuthorizeSecurityGroupIngress",
+                          [32m+[0m [0m"elasticloadbalancing:RegisterTargets",
+                          [32m+[0m [0m"elasticloadbalancing:DeregisterTargets",
+                          [32m+[0m [0m"logs:CreateLogGroup",
+                          [32m+[0m [0m"logs:CreateLogStream",
+                          [32m+[0m [0m"logs:PutLogEvents",
+                        ]
+                      [32m+[0m [0mEffect   = "Allow"
+                      [32m+[0m [0mResource = [
+                          [32m+[0m [0m"*",
+                        ]
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mrole[0m[0m   = (known after apply)
+    }
+
+[1m  # module.ec2-ecs.aws_iam_role_policy.ecs-task-execution-role[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role_policy" "ecs-task-execution-role" {
+      [32m+[0m [0m[1m[0mid[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m   = "ecs-task-execution-role"
+      [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction   = [
+                          [32m+[0m [0m"ecr:GetAuthorizationToken",
+                          [32m+[0m [0m"ecr:BatchCheckLayerAvailability",
+                          [32m+[0m [0m"ecr:GetDownloadUrlForLayer",
+                          [32m+[0m [0m"ecr:BatchGetImage",
+                          [32m+[0m [0m"logs:CreateLogGroup",
+                          [32m+[0m [0m"logs:CreateLogStream",
+                          [32m+[0m [0m"logs:PutLogEvents",
+                          [32m+[0m [0m"ssm:GetParameters",
+                          [32m+[0m [0m"secretsmanager:GetSecretValue",
+                          [32m+[0m [0m"kms:Decrypt",
+                          [32m+[0m [0m"ssm:GetParameter",
+                          [32m+[0m [0m"elasticfilesystem:ClientMount",
+                          [32m+[0m [0m"elasticfilesystem:ClientWrite",
+                        ]
+                      [32m+[0m [0mEffect   = "Allow"
+                      [32m+[0m [0mResource = "*"
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mrole[0m[0m   = (known after apply)
+    }
+
+[1m  # module.ec2-ecs.aws_launch_configuration.ecs[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_launch_configuration" "ecs" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m = true
+      [32m+[0m [0m[1m[0mebs_optimized[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_monitoring[0m[0m           = true
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m        = "ecs_instance_profile_prod"
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mimage_id[0m[0m                    = "ami-02704edb2becb49b9"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m               = "t2.medium"
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                    = "carsales_ecs_public_key"
+      [32m+[0m [0m[1m[0mname[0m[0m                        = "carsales-cluster"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mspot_price[0m[0m                  = "0.03"
+      [32m+[0m [0m[1m[0muser_data[0m[0m                   = "89be20c24a78d944c0dba866e8a2511150405fc3"
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mmetadata_options {
+          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # module.ec2-ecs.aws_security_group.ecs[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "ecs" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Allows inbound access from the ALB only"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = []
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = (known after apply)
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = []
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 22
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = (known after apply)
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 22
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "ecs_security_group"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.ecs.aws_ecs_cluster.my_cluster[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_cluster" "my_cluster" {
+      [32m+[0m [0m[1m[0marn[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m     = "carsales-cluster"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m = (known after apply)
+
+      [32m+[0m [0msetting {
+          [32m+[0m [0m[1m[0mname[0m[0m  = (known after apply)
+          [32m+[0m [0m[1m[0mvalue[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.efs.aws_efs_access_point.efs_access_point[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_access_point" "efs_access_point" {
+      [32m+[0m [0m[1m[0marn[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m            = {
+          [32m+[0m [0m"Name" = "EFS_For_ECS"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m        = {
+          [32m+[0m [0m"Name" = "EFS_For_ECS"
+        }
+
+      [32m+[0m [0mposix_user {
+          [32m+[0m [0m[1m[0mgid[0m[0m = 1000
+          [32m+[0m [0m[1m[0muid[0m[0m = 1000
+        }
+
+      [32m+[0m [0mroot_directory {
+          [32m+[0m [0m[1m[0mpath[0m[0m = "/mnt/efs"
+
+          [32m+[0m [0mcreation_info {
+              [32m+[0m [0m[1m[0mowner_gid[0m[0m   = 1000
+              [32m+[0m [0m[1m[0mowner_uid[0m[0m   = 1000
+              [32m+[0m [0m[1m[0mpermissions[0m[0m = "755"
+            }
+        }
+    }
+
+[1m  # module.efs.aws_efs_file_system.efs_volume[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_file_system" "efs_volume" {
+      [32m+[0m [0m[1m[0marn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone_name[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mcreation_token[0m[0m          = "efs-carsales-demo"
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mencrypted[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mnumber_of_mount_targets[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_mode[0m[0m        = "generalPurpose"
+      [32m+[0m [0m[1m[0msize_in_bytes[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mthroughput_mode[0m[0m         = "bursting"
+
+      [32m+[0m [0mlifecycle_policy {
+          [32m+[0m [0m[1m[0mtransition_to_ia[0m[0m = "AFTER_7_DAYS"
+        }
+    }
+
+[1m  # module.efs.aws_efs_mount_target.ecs_temp_space_az0[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_mount_target" "ecs_temp_space_az0" {
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mdns_name[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_arn[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mip_address[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mmount_target_dns_name[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m              = (known after apply)
+    }
+
+[1m  # module.efs.aws_efs_mount_target.ecs_temp_space_az1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_mount_target" "ecs_temp_space_az1" {
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mdns_name[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_arn[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mip_address[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mmount_target_dns_name[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m              = (known after apply)
+    }
+
+[1m  # module.efs.aws_security_group.carsales_efs_sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "carsales_efs_sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Managed by Terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = []
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 2049
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = (known after apply)
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 2049
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "CarSales EFS Security Group"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name"      = "EFS Security Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name"      = "EFS Security Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.key.aws_key_pair.carsales_ecs_public_key[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_key_pair" "carsales_ecs_public_key" {
+      [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mfingerprint[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mkey_name[0m[0m    = "carsales_ecs_public_key"
+      [32m+[0m [0m[1m[0mkey_pair_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_key[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m    = (known after apply)
+    }
+
+[1m  # module.key.local_file.carsales_ecs_private_key[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "local_file" "carsales_ecs_private_key" {
+      [32m+[0m [0m[1m[0mcontent[0m[0m              = (sensitive)
+      [32m+[0m [0m[1m[0mdirectory_permission[0m[0m = "0777"
+      [32m+[0m [0m[1m[0mfile_permission[0m[0m      = "0777"
+      [32m+[0m [0m[1m[0mfilename[0m[0m             = "carsales_ecs.pem"
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+    }
+
+[1m  # module.key.tls_private_key.carsales_ecs_key[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "tls_private_key" "carsales_ecs_key" {
+      [32m+[0m [0m[1m[0malgorithm[0m[0m                  = "RSA"
+      [32m+[0m [0m[1m[0mecdsa_curve[0m[0m                = "P224"
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_key_pem[0m[0m            = (sensitive value)
+      [32m+[0m [0m[1m[0mpublic_key_fingerprint_md5[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_key_openssh[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_key_pem[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mrsa_bits[0m[0m                   = 4096
+    }
+
+[1m  # module.rds.data.aws_secretsmanager_secret_version.creds[0m will be read during apply
+  # (config refers to values not yet known)[0m[0m
+[0m [36m<=[0m[0m data "aws_secretsmanager_secret_version" "creds"  {
+      [32m+[0m [0m[1m[0marn[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0msecret_binary[0m[0m  = (sensitive value)
+      [32m+[0m [0m[1m[0msecret_id[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0msecret_string[0m[0m  = (sensitive value)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mversion_stages[0m[0m = (known after apply)
+    }
+
+[1m  # module.rds.aws_db_instance.carsales-db[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_db_instance" "carsales-db" {
+      [32m+[0m [0m[1m[0maddress[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0mallocated_storage[0m[0m                     = 10
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mauto_minor_version_upgrade[0m[0m            = true
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mbackup_retention_period[0m[0m               = 7
+      [32m+[0m [0m[1m[0mbackup_window[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mca_cert_identifier[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcharacter_set_name[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcopy_tags_to_snapshot[0m[0m                 = false
+      [32m+[0m [0m[1m[0mdb_subnet_group_name[0m[0m                  = "carsales-database-subnet-group"
+      [32m+[0m [0m[1m[0mdelete_automated_backups[0m[0m              = true
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                                = "postgres"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m                        = "11.5"
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0midentifier[0m[0m                            = "carsales-database"
+      [32m+[0m [0m[1m[0midentifier_prefix[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0minstance_class[0m[0m                        = "db.t2.micro"
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mlatest_restorable_time[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mlicense_model[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mmaintenance_window[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmonitoring_interval[0m[0m                   = 0
+      [32m+[0m [0m[1m[0mmonitoring_role_arn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mmulti_az[0m[0m                              = true
+      [32m+[0m [0m[1m[0mname[0m[0m                                  = "magento"
+      [32m+[0m [0m[1m[0moption_group_name[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mparameter_group_name[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mpassword[0m[0m                              = (sensitive value)
+      [32m+[0m [0m[1m[0mperformance_insights_enabled[0m[0m          = false
+      [32m+[0m [0m[1m[0mperformance_insights_kms_key_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_insights_retention_period[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m                                  = (known after apply)
+      [32m+[0m [0m[1m[0mpublicly_accessible[0m[0m                   = false
+      [32m+[0m [0m[1m[0mreplicas[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mresource_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mskip_final_snapshot[0m[0m                   = true
+      [32m+[0m [0m[1m[0msnapshot_identifier[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mstatus[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0mstorage_encrypted[0m[0m                     = false
+      [32m+[0m [0m[1m[0mstorage_type[0m[0m                          = "gp2"
+      [32m+[0m [0m[1m[0mtags[0m[0m                                  = {
+          [32m+[0m [0m"Name"      = "CarSales Database"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = {
+          [32m+[0m [0m"Name"      = "CarSales Database"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtimezone[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0musername[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m                = (known after apply)
+    }
+
+[1m  # module.rds.aws_db_subnet_group.carsales-db-subnet[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_db_subnet_group" "carsales-db-subnet" {
+      [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m = "Managed by Terraform"
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m        = "carsales-database-subnet-group"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_ids[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m        = {
+          [32m+[0m [0m"Name"      = "DB Subnet Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m    = {
+          [32m+[0m [0m"Name"      = "DB Subnet Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+    }
+
+[1m  # module.rds.aws_secretsmanager_secret.RDS-postgres-username[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret" "RDS-postgres-username" {
+      [32m+[0m [0m[1m[0marn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                    = "carsales-rds-postgres-admin"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mpolicy[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mrecovery_window_in_days[0m[0m = 0
+      [32m+[0m [0m[1m[0mrotation_enabled[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mrotation_lambda_arn[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                = (known after apply)
+
+      [32m+[0m [0mrotation_rules {
+          [32m+[0m [0m[1m[0mautomatically_after_days[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # module.rds.aws_secretsmanager_secret_version.secretmanager-version[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret_version" "secretmanager-version" {
+      [32m+[0m [0m[1m[0marn[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0msecret_id[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0msecret_string[0m[0m  = (sensitive value)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mversion_stages[0m[0m = (known after apply)
+    }
+
+[1m  # module.rds.aws_security_group.carsales_db_sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "carsales_db_sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Managed by Terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = []
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 5432
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = (known after apply)
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 5432
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "CarSales RDS Security Group"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name"      = "RDS Security Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name"      = "RDS Security Group"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.rds.aws_ssm_parameter.db_host[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ssm_parameter" "db_host" {
+      [32m+[0m [0m[1m[0marn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mdata_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mkey_id[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m      = "/production/myapp/db-host"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mtier[0m[0m      = "Standard"
+      [32m+[0m [0m[1m[0mtype[0m[0m      = "String"
+      [32m+[0m [0m[1m[0mvalue[0m[0m     = (sensitive value)
+      [32m+[0m [0m[1m[0mversion[0m[0m   = (known after apply)
+    }
+
+[1m  # module.rds.aws_ssm_parameter.rdspassword[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ssm_parameter" "rdspassword" {
+      [32m+[0m [0m[1m[0marn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mdata_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mkey_id[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m      = "/production/myapp/rds-password"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mtier[0m[0m      = "Standard"
+      [32m+[0m [0m[1m[0mtype[0m[0m      = "SecureString"
+      [32m+[0m [0m[1m[0mvalue[0m[0m     = (sensitive value)
+      [32m+[0m [0m[1m[0mversion[0m[0m   = (known after apply)
+    }
+
+[1m  # module.rds.random_string.password[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "random_string" "password" {
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mlength[0m[0m      = 16
+      [32m+[0m [0m[1m[0mlower[0m[0m       = true
+      [32m+[0m [0m[1m[0mmin_lower[0m[0m   = 0
+      [32m+[0m [0m[1m[0mmin_numeric[0m[0m = 0
+      [32m+[0m [0m[1m[0mmin_special[0m[0m = 0
+      [32m+[0m [0m[1m[0mmin_upper[0m[0m   = 0
+      [32m+[0m [0m[1m[0mnumber[0m[0m      = true
+      [32m+[0m [0m[1m[0mresult[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mspecial[0m[0m     = false
+      [32m+[0m [0m[1m[0mupper[0m[0m       = true
+    }
+
+[1m  # module.route53.aws_route53_record.default_dns[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route53_record" "default_dns" {
+      [32m+[0m [0m[1m[0mallow_overwrite[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mfqdn[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m            = "myapps-test.aconex.design"
+      [32m+[0m [0m[1m[0mtype[0m[0m            = "A"
+      [32m+[0m [0m[1m[0mzone_id[0m[0m         = "Z2JDNY3K5WTR6X"
+
+      [32m+[0m [0malias {
+          [32m+[0m [0m[1m[0mevaluate_target_health[0m[0m = true
+          [32m+[0m [0m[1m[0mname[0m[0m                   = (known after apply)
+          [32m+[0m [0m[1m[0mzone_id[0m[0m                = (known after apply)
+        }
+    }
+
+[1m  # module.vpc.aws_eip.carsales-nat1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_eip" "carsales-nat1" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0massociation_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mcarrier_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mcustomer_owned_ip[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mdomain[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0minstance[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_border_group[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_dns[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ipv4_pool[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mvpc[0m[0m                  = (known after apply)
+    }
+
+[1m  # module.vpc.aws_eip.carsales-nat2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_eip" "carsales-nat2" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0massociation_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mcarrier_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mcustomer_owned_ip[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mdomain[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0minstance[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_border_group[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_dns[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ipv4_pool[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mvpc[0m[0m                  = (known after apply)
+    }
+
+[1m  # module.vpc.aws_internet_gateway.carsales-igw[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "carsales-igw" {
+      [32m+[0m [0m[1m[0marn[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m     = {
+          [32m+[0m [0m"Name"      = "CarSales Internet Gateway"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m = {
+          [32m+[0m [0m"Name"      = "CarSales Internet Gateway"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m   = (known after apply)
+    }
+
+[1m  # module.vpc.aws_nat_gateway.carsales-nat-gateway-1a[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_nat_gateway" "carsales-nat-gateway-1a" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mconnectivity_type[0m[0m    = "public"
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                 = {
+          [32m+[0m [0m"Name"      = "Nat Gateway-1a"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m             = {
+          [32m+[0m [0m"Name"      = "Nat Gateway-1a"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+    }
+
+[1m  # module.vpc.aws_nat_gateway.carsales-nat-gateway-1b[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_nat_gateway" "carsales-nat-gateway-1b" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mconnectivity_type[0m[0m    = "public"
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                 = {
+          [32m+[0m [0m"Name"      = "Nat Gateway-1b"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m             = {
+          [32m+[0m [0m"Name"      = "Nat Gateway-1b"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+    }
+
+[1m  # module.vpc.aws_route_table.carsales-public[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "carsales-public" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcarrier_gateway_id         = ""
+              [32m+[0m [0mcidr_block                 = "0.0.0.0/0"
+              [32m+[0m [0mdestination_prefix_list_id = ""
+              [32m+[0m [0megress_only_gateway_id     = ""
+              [32m+[0m [0mgateway_id                 = (known after apply)
+              [32m+[0m [0minstance_id                = ""
+              [32m+[0m [0mipv6_cidr_block            = ""
+              [32m+[0m [0mlocal_gateway_id           = ""
+              [32m+[0m [0mnat_gateway_id             = ""
+              [32m+[0m [0mnetwork_interface_id       = ""
+              [32m+[0m [0mtransit_gateway_id         = ""
+              [32m+[0m [0mvpc_endpoint_id            = ""
+              [32m+[0m [0mvpc_peering_connection_id  = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name"      = "CarSales Public Route Table"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m         = {
+          [32m+[0m [0m"Name"      = "CarSales Public Route Table"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # module.vpc.aws_route_table.carsales_private_route_table_1a[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "carsales_private_route_table_1a" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcarrier_gateway_id         = ""
+              [32m+[0m [0mcidr_block                 = "0.0.0.0/0"
+              [32m+[0m [0mdestination_prefix_list_id = ""
+              [32m+[0m [0megress_only_gateway_id     = ""
+              [32m+[0m [0mgateway_id                 = ""
+              [32m+[0m [0minstance_id                = ""
+              [32m+[0m [0mipv6_cidr_block            = ""
+              [32m+[0m [0mlocal_gateway_id           = ""
+              [32m+[0m [0mnat_gateway_id             = (known after apply)
+              [32m+[0m [0mnetwork_interface_id       = ""
+              [32m+[0m [0mtransit_gateway_id         = ""
+              [32m+[0m [0mvpc_endpoint_id            = ""
+              [32m+[0m [0mvpc_peering_connection_id  = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name"      = "CarSales Private route table 1A"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m         = {
+          [32m+[0m [0m"Name"      = "CarSales Private route table 1A"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # module.vpc.aws_route_table.carsales_private_route_table_1b[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "carsales_private_route_table_1b" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcarrier_gateway_id         = ""
+              [32m+[0m [0mcidr_block                 = "0.0.0.0/0"
+              [32m+[0m [0mdestination_prefix_list_id = ""
+              [32m+[0m [0megress_only_gateway_id     = ""
+              [32m+[0m [0mgateway_id                 = ""
+              [32m+[0m [0minstance_id                = ""
+              [32m+[0m [0mipv6_cidr_block            = ""
+              [32m+[0m [0mlocal_gateway_id           = ""
+              [32m+[0m [0mnat_gateway_id             = (known after apply)
+              [32m+[0m [0mnetwork_interface_id       = ""
+              [32m+[0m [0mtransit_gateway_id         = ""
+              [32m+[0m [0mvpc_endpoint_id            = ""
+              [32m+[0m [0mvpc_peering_connection_id  = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name"      = "CarSales Private route table 1B"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m         = {
+          [32m+[0m [0m"Name"      = "CarSales Private route table 1B"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # module.vpc.aws_route_table_association.carsales-1a[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "carsales-1a" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.vpc.aws_route_table_association.carsales-1b[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "carsales-1b" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.vpc.aws_route_table_association.carsales-public-1a-association[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "carsales-public-1a-association" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.vpc.aws_route_table_association.carsales-public-1b-association[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "carsales-public-1b-association" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.vpc.aws_subnet.carsales-private-1a[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "carsales-private-1a" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-south-1a"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.3.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = false
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name"      = "CarSales Private Subnet - 1A"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                        = {
+          [32m+[0m [0m"Name"      = "CarSales Private Subnet - 1A"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # module.vpc.aws_subnet.carsales-private-1b[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "carsales-private-1b" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-south-1b"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.4.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = false
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name"      = "CarSales Private Subnet - 1B"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                        = {
+          [32m+[0m [0m"Name"      = "CarSales Private Subnet - 1B"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # module.vpc.aws_subnet.carsales-public-1a[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "carsales-public-1a" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-south-1a"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.1.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name"      = "CarSales Public Subnet - 1A"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                        = {
+          [32m+[0m [0m"Name"      = "CarSales Public Subnet - 1A"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # module.vpc.aws_subnet.carsales-public-1b[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "carsales-public-1b" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-south-1b"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.2.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name"      = "CarSales Public Subnet - 1B"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                        = {
+          [32m+[0m [0m"Name"      = "CarSales Public Subnet - 1B"
+          [32m+[0m [0m"Terraform" = "True"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # module.vpc.aws_vpc.carsales_vpc[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_vpc" "carsales_vpc" {
+      [32m+[0m [0m[1m[0marn[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0massign_generated_ipv6_cidr_block[0m[0m = false
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                       = "10.0.0.0/16"
+      [32m+[0m [0m[1m[0mdefault_network_acl_id[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_route_table_id[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_security_group_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdhcp_options_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink_dns_support[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0menable_dns_hostnames[0m[0m             = true
+      [32m+[0m [0m[1m[0menable_dns_support[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0minstance_tenancy[0m[0m                 = "default"
+      [32m+[0m [0m[1m[0mipv6_association_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmain_route_table_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                             = {
+          [32m+[0m [0m"Name"      = "CarSales VPC"
+          [32m+[0m [0m"Terrafrom" = "True"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                         = {
+          [32m+[0m [0m"Name"      = "CarSales VPC"
+          [32m+[0m [0m"Terrafrom" = "True"
+        }
+    }
+
+[0m[1mPlan:[0m 66 to add, 0 to change, 0 to destroy.
+[0m[0m
+[1mChanges to Outputs:[0m[0m
+  [32m+[0m [0m[1m[0malb_dns_addr[0m[0m = "myapps-test.aconex.design"
+  [32m+[0m [0m[1m[0malb_url_addr[0m[0m = (known after apply)
+[0m[1mmodule.rds.random_string.password: Creating...[0m[0m
+[0m[1mmodule.key.tls_private_key.carsales_ecs_key: Creating...[0m[0m
+[0m[1mmodule.rds.random_string.password: Creation complete after 0s [id=4ZEosREnOu2crxL6][0m
+[0m[1mmodule.key.tls_private_key.carsales_ecs_key: Creation complete after 1s [id=6f8df04f715f445fb0994aabe8af4b49f23398cc][0m
+[0m[1mmodule.key.local_file.carsales_ecs_private_key: Creating...[0m[0m
+[0m[1mmodule.key.local_file.carsales_ecs_private_key: Creation complete after 0s [id=58069f37d536fa8f7a5b7f5beebc2d4e23e51015][0m
+[0m[1mmodule.key.aws_key_pair.carsales_ecs_public_key: Creating...[0m[0m
+[0m[1mmodule.ecs.aws_ecs_cluster.my_cluster: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-service-role: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_eip.carsales-nat2: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_eip.carsales-nat1: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-demo-task-role: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-host-role: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-task-execution-role: Creating...[0m[0m
+[0m[1mmodule.rds.aws_ssm_parameter.rdspassword: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_vpc.carsales_vpc: Creating...[0m[0m
+[0m[1mmodule.key.aws_key_pair.carsales_ecs_public_key: Creation complete after 0s [id=carsales_ecs_public_key][0m
+[0m[1mmodule.rds.aws_secretsmanager_secret.RDS-postgres-username: Creating...[0m[0m
+[0m[1mmodule.rds.aws_ssm_parameter.rdspassword: Creation complete after 0s [id=/production/myapp/rds-password][0m
+[0m[1mmodule.efs.aws_efs_file_system.efs_volume: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_eip.carsales-nat1: Creation complete after 0s [id=eipalloc-039fe9c61d7c0b685][0m
+[0m[1mmodule.rds.aws_secretsmanager_secret.RDS-postgres-username: Creation complete after 0s [id=arn:aws:secretsmanager:ap-south-1:207880003428:secret:carsales-rds-postgres-admin-55DDol][0m
+[0m[1mmodule.vpc.aws_eip.carsales-nat2: Creation complete after 0s [id=eipalloc-0aac6d618f763ce80][0m
+[0m[1mmodule.rds.aws_secretsmanager_secret_version.secretmanager-version: Creating...[0m[0m
+[0m[1mmodule.rds.aws_secretsmanager_secret_version.secretmanager-version: Creation complete after 0s [id=arn:aws:secretsmanager:ap-south-1:207880003428:secret:carsales-rds-postgres-admin-55DDol|AC1455DD-8EBD-422A-9F4A-E71053200A1F][0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Reading...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-demo-task-role: Creation complete after 3s [id=ecs-demo-task-role][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-host-role: Creation complete after 3s [id=ecs_host_role_prod][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-task-execution-role: Creation complete after 3s [id=ecs-task-execution-role][0m
+[0m[1mmodule.ec2-ecs.aws_iam_instance_profile.ecs: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-instance-role-policy: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-task-execution-role: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-service-role: Creation complete after 3s [id=ecs_service_role_prod][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-service-role-policy: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-task-execution-role: Creation complete after 2s [id=ecs-task-execution-role:ecs-task-execution-role][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-instance-role-policy: Creation complete after 2s [id=ecs_host_role_prod:ecs_instance_role_policy][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-service-role-policy: Creation complete after 2s [id=ecs_service_role_prod:ecs_service_role_policy][0m
+[0m[1mmodule.ec2-ecs.aws_iam_instance_profile.ecs: Creation complete after 2s [id=ecs_instance_profile_prod][0m
+[0m[1mmodule.efs.aws_efs_file_system.efs_volume: Creation complete after 5s [id=fs-7d605fac][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_task_definition.carsales2: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_task_definition.carsales1: Creating...[0m[0m
+[0m[1mmodule.efs.aws_efs_access_point.efs_access_point: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_task_definition.carsales2: Creation complete after 1s [id=carsales2][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_task_definition.carsales1: Creation complete after 1s [id=carsales1][0m
+[0m[1mmodule.efs.aws_efs_access_point.efs_access_point: Creation complete after 2s [id=fsap-0e84f23e96227e18e][0m
+[0m[1mmodule.ecs.aws_ecs_cluster.my_cluster: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_vpc.carsales_vpc: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.ecs.aws_ecs_cluster.my_cluster: Creation complete after 10s [id=arn:aws:ecs:ap-south-1:207880003428:cluster/carsales-cluster][0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_vpc.carsales_vpc: Creation complete after 11s [id=vpc-08ec9f5b4865fd512][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1b: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1a: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-private-1b: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_target_group.carsales-back-end-tg-1: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-private-1a: Creating...[0m[0m
+[0m[1mmodule.alb.aws_security_group.carsales_alb_sg: Creating...[0m[0m
+[0m[1mmodule.bastion.aws_security_group.carsales_bastion_sg: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_target_group.carsales-back-end-tg-2: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_internet_gateway.carsales-igw: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_target_group.carsales-back-end-tg-1: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:targetgroup/carsales-back-end-tg-1/dc1fa28cc13c726b][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_target_group.carsales-back-end-tg-2: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:targetgroup/carsales-back-end-tg-2/0cbaf256b67d0167][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_internet_gateway.carsales-igw: Creation complete after 0s [id=igw-04cd9830a538795cd][0m
+[0m[1mmodule.vpc.aws_route_table.carsales-public: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-private-1b: Creation complete after 0s [id=subnet-0d6cdb41c2430b059][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-private-1a: Creation complete after 0s [id=subnet-0780ea19677858071][0m
+[0m[1mmodule.rds.aws_db_subnet_group.carsales-db-subnet: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table.carsales-public: Creation complete after 0s [id=rtb-011868195d72642f7][0m
+[0m[1mmodule.alb.aws_security_group.carsales_alb_sg: Creation complete after 1s [id=sg-0e785d18fe0e337ae][0m
+[0m[1mmodule.bastion.aws_security_group.carsales_bastion_sg: Creation complete after 1s [id=sg-0896c38e0475d08af][0m
+[0m[1mmodule.ec2-ecs.aws_security_group.ecs: Creating...[0m[0m
+[0m[1mmodule.rds.aws_db_subnet_group.carsales-db-subnet: Creation complete after 1s [id=carsales-database-subnet-group][0m
+[0m[1mmodule.ec2-ecs.aws_security_group.ecs: Creation complete after 1s [id=sg-046eff143a02b61b1][0m
+[0m[1mmodule.ec2-ecs.aws_launch_configuration.ecs: Creating...[0m[0m
+[0m[1mmodule.efs.aws_security_group.carsales_efs_sg: Creating...[0m[0m
+[0m[1mmodule.rds.aws_security_group.carsales_db_sg: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_launch_configuration.ecs: Creation complete after 0s [id=carsales-cluster][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Creating...[0m[0m
+[0m[1mmodule.efs.aws_security_group.carsales_efs_sg: Creation complete after 1s [id=sg-0aedeb935eeed2ac1][0m
+[0m[1mmodule.rds.aws_security_group.carsales_db_sg: Creation complete after 1s [id=sg-0e24017c663321618][0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Creating...[0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Creating...[0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [20s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1b: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1a: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1a: Creation complete after 10s [id=subnet-06ce4cde844de992a][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1b: Creation complete after 10s [id=subnet-0530ef54582211017][0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-public-1a-association: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-public-1b-association: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-public-1b-association: Creation complete after 0s [id=rtbassoc-0fcaf239ae596afad][0m
+[0m[1mmodule.bastion.aws_instance.carsales_bastion_host-1a: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-public-1a-association: Creation complete after 0s [id=rtbassoc-0100a6ed18d164797][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [30s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.bastion.aws_instance.carsales_bastion_host-1a: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [40s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.bastion.aws_instance.carsales_bastion_host-1a: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.bastion.aws_instance.carsales_bastion_host-1a: Creation complete after 21s [id=i-01fa240621d5ab109][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [50s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Creation complete after 47s [id=carsales_auto_scaling_group][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-out: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-in: Creating...[0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [1m0s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-out: Creation complete after 0s [id=ecs-cluster-scale-out][0m
+[0m[1mmodule.ec2-ecs.aws_cloudwatch_metric_alarm.memory-high: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-in: Creation complete after 0s [id=ecs-cluster-scale-in][0m
+[0m[1mmodule.ec2-ecs.aws_cloudwatch_metric_alarm.memory-low: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_cloudwatch_metric_alarm.memory-high: Creation complete after 1s [id=mem-util-high-agents][0m
+[0m[1mmodule.ec2-ecs.aws_cloudwatch_metric_alarm.memory-low: Creation complete after 1s [id=mem-util-low-agents][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [1m10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [1m20s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [1m30s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Creation complete after 1m22s [id=fsmt-dd16960c][0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Creation complete after 1m22s [id=fsmt-df16960e][0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [1m40s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [1m50s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [2m0s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [2m10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Creation complete after 1m54s [id=nat-046dcf4512303a68d][0m
+[0m[1mmodule.vpc.aws_route_table.carsales_private_route_table_1b: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Creation complete after 1m54s [id=nat-0dac91e8df39689aa][0m
+[0m[1mmodule.vpc.aws_route_table.carsales_private_route_table_1a: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table.carsales_private_route_table_1b: Creation complete after 1s [id=rtb-0aa57306f74953b66][0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-1b: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-1b: Creation complete after 0s [id=rtbassoc-08850833b48591c72][0m
+[0m[1mmodule.vpc.aws_route_table.carsales_private_route_table_1a: Creation complete after 1s [id=rtb-027e1d8f1fc27bf6b][0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-1a: Creating...[0m[0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-1a: Creation complete after 0s [id=rtbassoc-0baa3932017978d78][0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [2m20s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [2m30s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Creation complete after 2m12s [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:loadbalancer/app/carsales-alb/881cbd5a680f5f27][0m
+[0m[1mmodule.alb.aws_lb_listener.carsales_http: Creating...[0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_listener.carsales_http: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce][0m
+[0m[1mmodule.alb.aws_lb_listener_rule.carsales_test2_http: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_listener_rule.carsales_test1_http: Creating...[0m[0m
+[0m[1mmodule.alb.aws_lb_listener_rule.carsales_test2_http: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener-rule/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce/119b1fecac22431d][0m
+[0m[1mmodule.alb.aws_lb_listener_rule.carsales_test1_http: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener-rule/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce/779a2ad95183e5b0][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Creation complete after 2m28s [id=arn:aws:ecs:ap-south-1:207880003428:service/carsales-cluster/carsales-commerical-service][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Creation complete after 2m28s [id=arn:aws:ecs:ap-south-1:207880003428:service/carsales-cluster/carsales-dealer-service][0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_target.carsales-dealer_to_target: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_target.carsales-dealer_to_target: Creation complete after 0s [id=service/carsales-cluster/carsales-dealer-service][0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_cpu: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_memory: Creating...[0m[0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_cpu: Creation complete after 0s [id=carsales-dealer-to-target-cpu][0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_memory: Creation complete after 0s [id=carsales-dealer-to-target-memory][0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [2m40s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [2m50s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [3m0s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [3m10s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [3m20s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [3m30s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [3m40s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [3m50s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.rds.data.aws_secretsmanager_secret_version.creds: Still reading... [4m0s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Creation complete after 1m35s [id=Z2JDNY3K5WTR6X_myapps-test.aconex.design_A][0m
+[0m[1mmodule.key.tls_private_key.carsales_ecs_key: Refreshing state... [id=6f8df04f715f445fb0994aabe8af4b49f23398cc][0m
+[0m[1mmodule.rds.random_string.password: Refreshing state... [id=4ZEosREnOu2crxL6][0m
+[0m[1mmodule.key.local_file.carsales_ecs_private_key: Refreshing state... [id=58069f37d536fa8f7a5b7f5beebc2d4e23e51015][0m
+[0m[1mmodule.efs.aws_efs_file_system.efs_volume: Refreshing state... [id=fs-7d605fac][0m
+[0m[1mmodule.rds.aws_ssm_parameter.rdspassword: Refreshing state... [id=/production/myapp/rds-password][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-host-role: Refreshing state... [id=ecs_host_role_prod][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-task-execution-role: Refreshing state... [id=ecs-task-execution-role][0m
+[0m[1mmodule.vpc.aws_vpc.carsales_vpc: Refreshing state... [id=vpc-08ec9f5b4865fd512][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-service-role: Refreshing state... [id=ecs_service_role_prod][0m
+[0m[1mmodule.key.aws_key_pair.carsales_ecs_public_key: Refreshing state... [id=carsales_ecs_public_key][0m
+[0m[1mmodule.rds.aws_secretsmanager_secret.RDS-postgres-username: Refreshing state... [id=arn:aws:secretsmanager:ap-south-1:207880003428:secret:carsales-rds-postgres-admin-55DDol][0m
+[0m[1mmodule.vpc.aws_eip.carsales-nat2: Refreshing state... [id=eipalloc-0aac6d618f763ce80][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role.ecs-demo-task-role: Refreshing state... [id=ecs-demo-task-role][0m
+[0m[1mmodule.vpc.aws_eip.carsales-nat1: Refreshing state... [id=eipalloc-039fe9c61d7c0b685][0m
+[0m[1mmodule.ecs.aws_ecs_cluster.my_cluster: Refreshing state... [id=arn:aws:ecs:ap-south-1:207880003428:cluster/carsales-cluster][0m
+[0m[1mmodule.rds.aws_secretsmanager_secret_version.secretmanager-version: Refreshing state... [id=arn:aws:secretsmanager:ap-south-1:207880003428:secret:carsales-rds-postgres-admin-55DDol|AC1455DD-8EBD-422A-9F4A-E71053200A1F][0m
+[0m[1mmodule.efs.aws_efs_access_point.efs_access_point: Refreshing state... [id=fsap-0e84f23e96227e18e][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1a: Refreshing state... [id=subnet-06ce4cde844de992a][0m
+[0m[1mmodule.vpc.aws_internet_gateway.carsales-igw: Refreshing state... [id=igw-04cd9830a538795cd][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-private-1b: Refreshing state... [id=subnet-0d6cdb41c2430b059][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-public-1b: Refreshing state... [id=subnet-0530ef54582211017][0m
+[0m[1mmodule.vpc.aws_subnet.carsales-private-1a: Refreshing state... [id=subnet-0780ea19677858071][0m
+[0m[1mmodule.vpc.aws_route_table.carsales-public: Refreshing state... [id=rtb-011868195d72642f7][0m
+[0m[1mmodule.alb.aws_lb_target_group.carsales-back-end-tg-2: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:targetgroup/carsales-back-end-tg-2/0cbaf256b67d0167][0m
+[0m[1mmodule.alb.aws_lb_target_group.carsales-back-end-tg-1: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:targetgroup/carsales-back-end-tg-1/dc1fa28cc13c726b][0m
+[0m[1mmodule.bastion.aws_security_group.carsales_bastion_sg: Refreshing state... [id=sg-0896c38e0475d08af][0m
+[0m[1mmodule.alb.aws_security_group.carsales_alb_sg: Refreshing state... [id=sg-0e785d18fe0e337ae][0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1b: Refreshing state... [id=nat-046dcf4512303a68d][0m
+[0m[1mmodule.vpc.aws_nat_gateway.carsales-nat-gateway-1a: Refreshing state... [id=nat-0dac91e8df39689aa][0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-public-1a-association: Refreshing state... [id=rtbassoc-0100a6ed18d164797][0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-public-1b-association: Refreshing state... [id=rtbassoc-0fcaf239ae596afad][0m
+[0m[1mmodule.bastion.aws_instance.carsales_bastion_host-1a: Refreshing state... [id=i-01fa240621d5ab109][0m
+[0m[1mmodule.alb.aws_lb.carsales_alb: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:loadbalancer/app/carsales-alb/881cbd5a680f5f27][0m
+[0m[1mmodule.rds.aws_db_subnet_group.carsales-db-subnet: Refreshing state... [id=carsales-database-subnet-group][0m
+[0m[1mmodule.vpc.aws_route_table.carsales_private_route_table_1a: Refreshing state... [id=rtb-027e1d8f1fc27bf6b][0m
+[0m[1mmodule.ec2-ecs.aws_security_group.ecs: Refreshing state... [id=sg-046eff143a02b61b1][0m
+[0m[1mmodule.vpc.aws_route_table.carsales_private_route_table_1b: Refreshing state... [id=rtb-0aa57306f74953b66][0m
+[0m[1mmodule.alb.aws_lb_listener.carsales_http: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce][0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-1a: Refreshing state... [id=rtbassoc-0baa3932017978d78][0m
+[0m[1mmodule.rds.aws_security_group.carsales_db_sg: Refreshing state... [id=sg-0e24017c663321618][0m
+[0m[1mmodule.vpc.aws_route_table_association.carsales-1b: Refreshing state... [id=rtbassoc-08850833b48591c72][0m
+[0m[1mmodule.efs.aws_security_group.carsales_efs_sg: Refreshing state... [id=sg-0aedeb935eeed2ac1][0m
+[0m[1mmodule.alb.aws_lb_listener_rule.carsales_test2_http: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener-rule/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce/119b1fecac22431d][0m
+[0m[1mmodule.alb.aws_lb_listener_rule.carsales_test1_http: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener-rule/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce/779a2ad95183e5b0][0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az1: Refreshing state... [id=fsmt-dd16960c][0m
+[0m[1mmodule.efs.aws_efs_mount_target.ecs_temp_space_az0: Refreshing state... [id=fsmt-df16960e][0m
+[0m[1mmodule.route53.aws_route53_record.default_dns: Refreshing state... [id=Z2JDNY3K5WTR6X_myapps-test.aconex.design_A][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-service-role-policy: Refreshing state... [id=ecs_service_role_prod:ecs_service_role_policy][0m
+[0m[1mmodule.ec2-ecs.aws_iam_instance_profile.ecs: Refreshing state... [id=ecs_instance_profile_prod][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-instance-role-policy: Refreshing state... [id=ecs_host_role_prod:ecs_instance_role_policy][0m
+[0m[1mmodule.ec2-ecs.aws_iam_role_policy.ecs-task-execution-role: Refreshing state... [id=ecs-task-execution-role:ecs-task-execution-role][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_task_definition.carsales1: Refreshing state... [id=carsales1][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_task_definition.carsales2: Refreshing state... [id=carsales2][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-dealer-service: Refreshing state... [id=arn:aws:ecs:ap-south-1:207880003428:service/carsales-cluster/carsales-dealer-service][0m
+[0m[1mmodule.ec2-ecs.aws_ecs_service.carsales-commerical-service: Refreshing state... [id=arn:aws:ecs:ap-south-1:207880003428:service/carsales-cluster/carsales-commerical-service][0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_target.carsales-dealer_to_target: Refreshing state... [id=service/carsales-cluster/carsales-dealer-service][0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_memory: Refreshing state... [id=carsales-dealer-to-target-memory][0m
+[0m[1mmodule.ec2-ecs.aws_appautoscaling_policy.carsales-dealer_to_target_cpu: Refreshing state... [id=carsales-dealer-to-target-cpu][0m
+[0m[1mmodule.ec2-ecs.aws_launch_configuration.ecs: Refreshing state... [id=carsales-cluster][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_group.ecs-cluster: Refreshing state... [id=carsales_auto_scaling_group][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-in: Refreshing state... [id=ecs-cluster-scale-in][0m
+[0m[1mmodule.ec2-ecs.aws_autoscaling_policy.ecs-cluster-scale-out: Refreshing state... [id=ecs-cluster-scale-out][0m
+[0m[1mmodule.ec2-ecs.aws_cloudwatch_metric_alarm.memory-low: Refreshing state... [id=mem-util-low-agents][0m
+[0m[1mmodule.ec2-ecs.aws_cloudwatch_metric_alarm.memory-high: Refreshing state... [id=mem-util-high-agents][0m
+[0m
+[1m[36mNote:[0m[1m Objects have changed outside of Terraform[0m
+
+[0mTerraform detected the following changes made outside of Terraform since the
+last "terraform apply":
+
+[1m  # module.efs.aws_efs_access_point.efs_access_point[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_efs_access_point" "efs_access_point" {
+        [1m[0mid[0m[0m              = "fsap-0e84f23e96227e18e"
+        [1m[0mtags[0m[0m            = {
+            "Name" = "EFS_For_ECS"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+
+      [33m~[0m [0mposix_user {
+          [32m+[0m [0m[1m[0msecondary_gids[0m[0m = []
+            [90m# (2 unchanged attributes hidden)[0m[0m
+        }
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+[1m  # module.efs.aws_efs_file_system.efs_volume[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_efs_file_system" "efs_volume" {
+        [1m[0mid[0m[0m                              = "fs-7d605fac"
+      [33m~[0m [0m[1m[0mnumber_of_mount_targets[0m[0m         = 0 [33m->[0m [0m2
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {}
+        [90m# (11 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+[1m  # module.rds.aws_ssm_parameter.rdspassword[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_ssm_parameter" "rdspassword" {
+        [1m[0mid[0m[0m        = "/production/myapp/rds-password"
+        [1m[0mname[0m[0m      = "/production/myapp/rds-password"
+      [32m+[0m [0m[1m[0mtags[0m[0m      = {}
+        [90m# (8 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.rds.aws_secretsmanager_secret.RDS-postgres-username[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_secretsmanager_secret" "RDS-postgres-username" {
+        [1m[0mid[0m[0m                      = "arn:aws:secretsmanager:ap-south-1:207880003428:secret:carsales-rds-postgres-admin-55DDol"
+        [1m[0mname[0m[0m                    = "carsales-rds-postgres-admin"
+      [32m+[0m [0m[1m[0mtags[0m[0m                    = {}
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.route53.aws_route53_record.default_dns[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_route53_record" "default_dns" {
+        [1m[0mid[0m[0m      = "Z2JDNY3K5WTR6X_myapps-test.aconex.design_A"
+        [1m[0mname[0m[0m    = "myapps-test.aconex.design"
+      [32m+[0m [0m[1m[0mrecords[0m[0m = []
+      [32m+[0m [0m[1m[0mttl[0m[0m     = 0
+        [90m# (3 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+[1m  # module.alb.aws_lb_listener.carsales_http[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_lb_listener" "carsales_http" {
+        [1m[0mid[0m[0m                = "arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce"
+      [32m+[0m [0m[1m[0mtags[0m[0m              = {}
+        [90m# (5 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+[1m  # module.alb.aws_lb_listener_rule.carsales_test1_http[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_lb_listener_rule" "carsales_test1_http" {
+        [1m[0mid[0m[0m           = "arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener-rule/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce/779a2ad95183e5b0"
+      [32m+[0m [0m[1m[0mtags[0m[0m         = {}
+        [90m# (4 unchanged attributes hidden)[0m[0m
+
+
+        [90m# (2 unchanged blocks hidden)[0m[0m
+    }
+[1m  # module.alb.aws_lb_listener_rule.carsales_test2_http[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_lb_listener_rule" "carsales_test2_http" {
+        [1m[0mid[0m[0m           = "arn:aws:elasticloadbalancing:ap-south-1:207880003428:listener-rule/app/carsales-alb/881cbd5a680f5f27/b4a28a5bab18b9ce/119b1fecac22431d"
+      [32m+[0m [0m[1m[0mtags[0m[0m         = {}
+        [90m# (4 unchanged attributes hidden)[0m[0m
+
+
+        [90m# (2 unchanged blocks hidden)[0m[0m
+    }
+[1m  # module.vpc.aws_eip.carsales-nat2[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_eip" "carsales-nat2" {
+      [32m+[0m [0m[1m[0massociation_id[0m[0m       = "eipassoc-089fad9384a477a76"
+        [1m[0mid[0m[0m                   = "eipalloc-0aac6d618f763ce80"
+      [32m+[0m [0m[1m[0mnetwork_interface[0m[0m    = "eni-0e4ce41447346f3a2"
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m          = "ip-10-0-2-56.ap-south-1.compute.internal"
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = "10.0.2.56"
+      [32m+[0m [0m[1m[0mtags[0m[0m                 = {}
+        [90m# (7 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.vpc.aws_eip.carsales-nat1[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_eip" "carsales-nat1" {
+      [32m+[0m [0m[1m[0massociation_id[0m[0m       = "eipassoc-08bbcbeb07627e995"
+        [1m[0mid[0m[0m                   = "eipalloc-039fe9c61d7c0b685"
+      [32m+[0m [0m[1m[0mnetwork_interface[0m[0m    = "eni-0531804844238b212"
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m          = "ip-10-0-1-245.ap-south-1.compute.internal"
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = "10.0.1.245"
+      [32m+[0m [0m[1m[0mtags[0m[0m                 = {}
+        [90m# (7 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_security_group.ecs[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_security_group" "ecs" {
+        [1m[0mid[0m[0m                     = "sg-046eff143a02b61b1"
+        [1m[0mname[0m[0m                   = "ecs_security_group"
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {}
+        [90m# (8 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_cloudwatch_metric_alarm.memory-high[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_cloudwatch_metric_alarm" "memory-high" {
+        [1m[0mid[0m[0m                        = "mem-util-high-agents"
+      [32m+[0m [0m[1m[0minsufficient_data_actions[0m[0m = []
+      [32m+[0m [0m[1m[0mok_actions[0m[0m                = []
+      [32m+[0m [0m[1m[0mtags[0m[0m                      = {}
+        [90m# (16 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_ecs_service.carsales-commerical-service[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_ecs_service" "carsales-commerical-service" {
+        [1m[0mid[0m[0m                                 = "arn:aws:ecs:ap-south-1:207880003428:service/carsales-cluster/carsales-commerical-service"
+        [1m[0mname[0m[0m                               = "carsales-commerical-service"
+      [32m+[0m [0m[1m[0mtags[0m[0m                               = {}
+        [90m# (14 unchanged attributes hidden)[0m[0m
+
+
+
+        [90m# (3 unchanged blocks hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_cloudwatch_metric_alarm.memory-low[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_cloudwatch_metric_alarm" "memory-low" {
+        [1m[0mid[0m[0m                        = "mem-util-low-agents"
+      [32m+[0m [0m[1m[0minsufficient_data_actions[0m[0m = []
+      [32m+[0m [0m[1m[0mok_actions[0m[0m                = []
+      [32m+[0m [0m[1m[0mtags[0m[0m                      = {}
+        [90m# (16 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_ecs_task_definition.carsales2[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_ecs_task_definition" "carsales2" {
+        [1m[0mid[0m[0m                       = "carsales2"
+      [32m+[0m [0m[1m[0mrequires_compatibilities[0m[0m = []
+      [32m+[0m [0m[1m[0mtags[0m[0m                     = {}
+        [90m# (7 unchanged attributes hidden)[0m[0m
+
+      [32m+[0m [0mvolume {
+          [32m+[0m [0m[1m[0mname[0m[0m = "efs-carsales-demo"
+
+          [32m+[0m [0mefs_volume_configuration {
+              [32m+[0m [0m[1m[0mfile_system_id[0m[0m          = "fs-7d605fac"
+              [32m+[0m [0m[1m[0mroot_directory[0m[0m          = "/"
+              [32m+[0m [0m[1m[0mtransit_encryption_port[0m[0m = 0
+            }
+        }
+      [31m-[0m [0mvolume {
+          [31m-[0m [0m[1m[0mname[0m[0m = "efs-carsales-demo" [90m->[0m [0m[90mnull[0m[0m
+
+          [31m-[0m [0mefs_volume_configuration {
+              [31m-[0m [0m[1m[0mfile_system_id[0m[0m = "fs-7d605fac" [90m->[0m [0m[90mnull[0m[0m
+              [31m-[0m [0m[1m[0mroot_directory[0m[0m = "/" [90m->[0m [0m[90mnull[0m[0m
+            }
+        }
+    }
+[1m  # module.ec2-ecs.aws_launch_configuration.ecs[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_launch_configuration" "ecs" {
+        [1m[0mid[0m[0m                               = "carsales-cluster"
+        [1m[0mname[0m[0m                             = "carsales-cluster"
+      [32m+[0m [0m[1m[0mvpc_classic_link_security_groups[0m[0m = []
+        [90m# (11 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_autoscaling_group.ecs-cluster[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_autoscaling_group" "ecs-cluster" {
+      [32m+[0m [0m[1m[0menabled_metrics[0m[0m           = []
+        [1m[0mid[0m[0m                        = "carsales_auto_scaling_group"
+      [32m+[0m [0m[1m[0mload_balancers[0m[0m            = []
+        [1m[0mname[0m[0m                      = "carsales_auto_scaling_group"
+      [32m+[0m [0m[1m[0msuspended_processes[0m[0m       = []
+      [32m+[0m [0m[1m[0mtarget_group_arns[0m[0m         = []
+        [90m# (19 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_ecs_task_definition.carsales1[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_ecs_task_definition" "carsales1" {
+        [1m[0mid[0m[0m                       = "carsales1"
+      [32m+[0m [0m[1m[0mrequires_compatibilities[0m[0m = []
+      [32m+[0m [0m[1m[0mtags[0m[0m                     = {}
+        [90m# (7 unchanged attributes hidden)[0m[0m
+
+      [32m+[0m [0mvolume {
+          [32m+[0m [0m[1m[0mname[0m[0m = "efs-carsales-demo"
+
+          [32m+[0m [0mefs_volume_configuration {
+              [32m+[0m [0m[1m[0mfile_system_id[0m[0m          = "fs-7d605fac"
+              [32m+[0m [0m[1m[0mroot_directory[0m[0m          = "/"
+              [32m+[0m [0m[1m[0mtransit_encryption_port[0m[0m = 0
+            }
+        }
+      [31m-[0m [0mvolume {
+          [31m-[0m [0m[1m[0mname[0m[0m = "efs-carsales-demo" [90m->[0m [0m[90mnull[0m[0m
+
+          [31m-[0m [0mefs_volume_configuration {
+              [31m-[0m [0m[1m[0mfile_system_id[0m[0m = "fs-7d605fac" [90m->[0m [0m[90mnull[0m[0m
+              [31m-[0m [0m[1m[0mroot_directory[0m[0m = "/" [90m->[0m [0m[90mnull[0m[0m
+            }
+        }
+    }
+[1m  # module.ec2-ecs.aws_iam_role.ecs-task-execution-role[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_iam_role" "ecs-task-execution-role" {
+        [1m[0mid[0m[0m                    = "ecs-task-execution-role"
+        [1m[0mname[0m[0m                  = "ecs-task-execution-role"
+      [32m+[0m [0m[1m[0mtags[0m[0m                  = {}
+        [90m# (9 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m [0minline_policy {}
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = "ecs-task-execution-role"
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+                {
+                  [32m+[0m [0mStatement = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mAction   = [
+                              [32m+[0m [0m"ecr:GetAuthorizationToken",
+                              [32m+[0m [0m"ecr:BatchCheckLayerAvailability",
+                              [32m+[0m [0m"ecr:GetDownloadUrlForLayer",
+                              [32m+[0m [0m"ecr:BatchGetImage",
+                              [32m+[0m [0m"logs:CreateLogGroup",
+                              [32m+[0m [0m"logs:CreateLogStream",
+                              [32m+[0m [0m"logs:PutLogEvents",
+                              [32m+[0m [0m"ssm:GetParameters",
+                              [32m+[0m [0m"secretsmanager:GetSecretValue",
+                              [32m+[0m [0m"kms:Decrypt",
+                              [32m+[0m [0m"ssm:GetParameter",
+                              [32m+[0m [0m"elasticfilesystem:ClientMount",
+                              [32m+[0m [0m"elasticfilesystem:ClientWrite",
+                            ]
+                          [32m+[0m [0mEffect   = "Allow"
+                          [32m+[0m [0mResource = "*"
+                        },
+                    ]
+                  [32m+[0m [0mVersion   = "2012-10-17"
+                }
+            )
+        }
+    }
+[1m  # module.ec2-ecs.aws_iam_role.ecs-service-role[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_iam_role" "ecs-service-role" {
+      [33m~[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+          [33m~[0m [0m{
+              [33m~[0m [0mStatement = [
+                  [33m~[0m [0m{
+                      [33m~[0m [0mPrincipal = {
+                          [33m~[0m [0mService = [
+                              [31m-[0m [0m"ecs.amazonaws.com",
+                                "ec2.amazonaws.com",
+                              [32m+[0m [0m"ecs.amazonaws.com",
+                            ]
+                        }
+                        [90m# (2 unchanged elements hidden)[0m[0m
+                    },
+                ]
+                [90m# (1 unchanged element hidden)[0m[0m
+            }
+        )
+        [1m[0mid[0m[0m                    = "ecs_service_role_prod"
+        [1m[0mname[0m[0m                  = "ecs_service_role_prod"
+      [32m+[0m [0m[1m[0mtags[0m[0m                  = {}
+        [90m# (8 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m [0minline_policy {}
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = "ecs_service_role_policy"
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+                {
+                  [32m+[0m [0mStatement = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mAction   = [
+                              [32m+[0m [0m"elasticloadbalancing:Describe*",
+                              [32m+[0m [0m"elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                              [32m+[0m [0m"elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                              [32m+[0m [0m"ec2:Describe*",
+                              [32m+[0m [0m"ec2:AuthorizeSecurityGroupIngress",
+                              [32m+[0m [0m"elasticloadbalancing:RegisterTargets",
+                              [32m+[0m [0m"elasticloadbalancing:DeregisterTargets",
+                              [32m+[0m [0m"logs:CreateLogGroup",
+                              [32m+[0m [0m"logs:CreateLogStream",
+                              [32m+[0m [0m"logs:PutLogEvents",
+                            ]
+                          [32m+[0m [0mEffect   = "Allow"
+                          [32m+[0m [0mResource = [
+                              [32m+[0m [0m"*",
+                            ]
+                        },
+                    ]
+                  [32m+[0m [0mVersion   = "2012-10-17"
+                }
+            )
+        }
+    }
+[1m  # module.ec2-ecs.aws_iam_role.ecs-host-role[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_iam_role" "ecs-host-role" {
+        [1m[0mid[0m[0m                    = "ecs_host_role_prod"
+        [1m[0mname[0m[0m                  = "ecs_host_role_prod"
+      [32m+[0m [0m[1m[0mtags[0m[0m                  = {}
+        [90m# (9 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m [0minline_policy {}
+      [32m+[0m [0minline_policy {
+          [32m+[0m [0m[1m[0mname[0m[0m   = "ecs_instance_role_policy"
+          [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+                {
+                  [32m+[0m [0mStatement = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mAction   = [
+                              [32m+[0m [0m"ecs:*",
+                              [32m+[0m [0m"ec2:*",
+                              [32m+[0m [0m"elasticloadbalancing:*",
+                              [32m+[0m [0m"ecr:*",
+                              [32m+[0m [0m"cloudwatch:*",
+                              [32m+[0m [0m"s3:*",
+                              [32m+[0m [0m"rds:*",
+                              [32m+[0m [0m"logs:*",
+                            ]
+                          [32m+[0m [0mEffect   = "Allow"
+                          [32m+[0m [0mResource = "*"
+                        },
+                    ]
+                  [32m+[0m [0mVersion   = "2012-10-17"
+                }
+            )
+        }
+    }
+[1m  # module.ec2-ecs.aws_iam_role.ecs-demo-task-role[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_iam_role" "ecs-demo-task-role" {
+        [1m[0mid[0m[0m                    = "ecs-demo-task-role"
+        [1m[0mname[0m[0m                  = "ecs-demo-task-role"
+      [32m+[0m [0m[1m[0mtags[0m[0m                  = {}
+        [90m# (9 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_ecs_service.carsales-dealer-service[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_ecs_service" "carsales-dealer-service" {
+        [1m[0mid[0m[0m                                 = "arn:aws:ecs:ap-south-1:207880003428:service/carsales-cluster/carsales-dealer-service"
+        [1m[0mname[0m[0m                               = "carsales-dealer-service"
+      [32m+[0m [0m[1m[0mtags[0m[0m                               = {}
+        [90m# (14 unchanged attributes hidden)[0m[0m
+
+
+
+        [90m# (3 unchanged blocks hidden)[0m[0m
+    }
+[1m  # module.ec2-ecs.aws_iam_instance_profile.ecs[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_iam_instance_profile" "ecs" {
+        [1m[0mid[0m[0m          = "ecs_instance_profile_prod"
+        [1m[0mname[0m[0m        = "ecs_instance_profile_prod"
+      [32m+[0m [0m[1m[0mtags[0m[0m        = {}
+        [90m# (6 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.key.aws_key_pair.carsales_ecs_public_key[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_key_pair" "carsales_ecs_public_key" {
+        [1m[0mid[0m[0m          = "carsales_ecs_public_key"
+      [32m+[0m [0m[1m[0mtags[0m[0m        = {}
+        [90m# (6 unchanged attributes hidden)[0m[0m
+    }
+[1m  # module.ecs.aws_ecs_cluster.my_cluster[0m has been changed[0m[0m
+[0m  [33m~[0m[0m resource "aws_ecs_cluster" "my_cluster" {
+      [32m+[0m [0m[1m[0mcapacity_providers[0m[0m = []
+        [1m[0mid[0m[0m                 = "arn:aws:ecs:ap-south-1:207880003428:cluster/carsales-cluster"
+        [1m[0mname[0m[0m               = "carsales-cluster"
+      [32m+[0m [0m[1m[0mtags[0m[0m               = {}
+        [90m# (2 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the
+relevant attributes using ignore_changes, the following plan may include
+actions to undo or respond to these changes.
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # module.rds.aws_db_instance.carsales-db[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_db_instance" "carsales-db" {
+      [32m+[0m [0m[1m[0maddress[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0mallocated_storage[0m[0m                     = 10
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mauto_minor_version_upgrade[0m[0m            = true
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mbackup_retention_period[0m[0m               = 7
+      [32m+[0m [0m[1m[0mbackup_window[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mca_cert_identifier[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcharacter_set_name[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcopy_tags_to_snapshot[0m[0m                 = false
+      [32m+[0m [0m[1m[0mdb_subnet_group_name[0m[0m                  = "carsales-database-subnet-group"
+      [32m+[0m [0m[1m[0mdelete_automated_backups[0m[0m              = true
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                                = "postgres"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m                        = "11.5"
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0midentifier[0m[0m                            = "carsales-database"
+      [32m+[0m [0m[1m[0midentifier_prefix[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0minstance_class[0m[0m                        = "db.t2.micro"
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mlatest_restorable_time[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mlicense_model[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mmaintenance_window[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmonitoring_interval[0m[0m                   = 0
+      [32m+[0m [0m[1m[0mmonitoring_role_arn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mmulti_az[0m[0m                              = true
+      [32m+[0m [0m[1m[0mname[0m[0m                                  = "magento"
+      [32m+[0m [0m[1m[0moption_group_name[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mparameter_group_name[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mpassword[0m[0m                              = (sensitive value)
+      [32m+[0m [0m[1m[0mperformance_insights_enabled[0m[0m          = false
+      [32m+[0m [0m[1m[0mperformance_insights_kms_key_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_insights_retention_period[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m                                  = (known after apply)
+      [32m+[0m [0m[1m[0mpublicly_accessible[0m[0m                   = false
+      [32m+[0m [0m[1m[0mreplicas[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mresource_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mskip_final_snapshot[0m[0m                   = true
+      [32m+[0m [0m[1m[0msnapshot_identifier[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mstatus[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0mstorage_encrypted[0m[0m                     = false
+      [32m+[0m [0m[1m[0mstorage_type[0m[0m                          = "gp2"
+      [32m+[0m [0m[1m[0mtags[0m[0m                                  = {
+          [32m+[0m [0m"Name"      = "CarSales Database"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = {
+          [32m+[0m [0m"Name"      = "CarSales Database"
+          [32m+[0m [0m"Terraform" = "true"
+        }
+      [32m+[0m [0m[1m[0mtimezone[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0musername[0m[0m                              = (sensitive)
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m                = [
+          [32m+[0m [0m"sg-0e24017c663321618",
+        ]
+    }
+
+[1m  # module.rds.aws_ssm_parameter.db_host[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ssm_parameter" "db_host" {
+      [32m+[0m [0m[1m[0marn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mdata_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mkey_id[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m      = "/production/myapp/db-host"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mtier[0m[0m      = "Standard"
+      [32m+[0m [0m[1m[0mtype[0m[0m      = "String"
+      [32m+[0m [0m[1m[0mvalue[0m[0m     = (sensitive value)
+      [32m+[0m [0m[1m[0mversion[0m[0m   = (known after apply)
+    }
+
+[0m[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.
+[0m[0m[1mmodule.rds.aws_db_instance.carsales-db: Creating...[0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [2m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [2m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [2m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [3m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [3m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [3m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [3m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [3m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [3m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [4m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [4m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [4m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [4m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [4m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [4m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [5m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [5m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [5m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [5m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [5m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [5m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [6m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [6m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [6m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [6m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [6m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [6m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [7m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [7m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [7m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [7m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [7m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [7m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [8m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [8m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [8m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [8m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [8m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [8m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [9m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [9m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [9m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [9m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [9m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [9m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [10m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [11m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [11m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [11m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [11m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [11m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [11m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [12m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [12m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [12m20s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [12m30s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [12m40s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [12m50s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [13m0s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Still creating... [13m10s elapsed][0m[0m
+[0m[1mmodule.rds.aws_db_instance.carsales-db: Creation complete after 13m20s [id=carsales-database][0m
+[0m[1mmodule.rds.aws_ssm_parameter.db_host: Creating...[0m[0m
+[0m[1mmodule.rds.aws_ssm_parameter.db_host: Creation complete after 0s [id=/production/myapp/db-host][0m
+[0m[1m[32m
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0malb_dns_addr = "myapps-test.aconex.design"
+alb_url_addr = "carsales-alb-597260232.ap-south-1.elb.amazonaws.com"

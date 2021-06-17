@@ -63,9 +63,9 @@ variable "spot_bid_price"  {
     default = "0.03"
 
 }
-variable "region" {
-    default = "ap-south-1"
-
-}
+#variable "region" {
+#    default = "ap-south-1"
+#
+#}
 
 

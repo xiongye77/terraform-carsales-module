@@ -55,7 +55,8 @@ resource "aws_nat_gateway" "carsales-nat-gateway-1b" {
 resource "aws_subnet" "carsales-public-1a" {
   vpc_id = aws_vpc.carsales_vpc.id
   cidr_block = var.public_1_subnetCIDR
-  availability_zone = "${var.region}a"
+  availability_zone = "${data.aws_region.current.name}a"
+  #availability_zone = "${var.region}a"
   map_public_ip_on_launch = "true"
   tags = {
     Name        = "CarSales Public Subnet - 1A"
@@ -65,7 +66,7 @@ resource "aws_subnet" "carsales-public-1a" {
 resource "aws_subnet" "carsales-public-1b" {
   vpc_id = aws_vpc.carsales_vpc.id
   cidr_block = var.public_2_subnetCIDR
-  availability_zone = "${var.region}b"
+  availability_zone = "${data.aws_region.current.name}b"
   map_public_ip_on_launch = "true"
   tags = {
     Name        = "CarSales Public Subnet - 1B"
@@ -80,7 +81,8 @@ resource "aws_subnet" "carsales-public-1b" {
 resource "aws_subnet" "carsales-private-1a" {
   vpc_id = aws_vpc.carsales_vpc.id
   cidr_block = var.private_1_subnetCIDR
-  availability_zone = "${var.region}a"
+  availability_zone = "${data.aws_region.current.name}a"
+  #availability_zone = "${var.region}a"
   map_public_ip_on_launch = "false"
   tags = {
     Name        = "CarSales Private Subnet - 1A"
@@ -91,7 +93,8 @@ resource "aws_subnet" "carsales-private-1a" {
 resource "aws_subnet" "carsales-private-1b" {
   vpc_id = aws_vpc.carsales_vpc.id
   cidr_block = var.private_2_subnetCIDR
-  availability_zone = "${var.region}b"
+  availability_zone = "${data.aws_region.current.name}b"
+  #availability_zone = "${var.region}b"
   map_public_ip_on_launch = "false"
   tags = {
     Name        = "CarSales Private Subnet - 1B"

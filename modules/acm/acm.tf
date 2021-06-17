@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cert" {
-  domain_name       = "aconex.design"
+  domain_name       = "myapps-test.aconex.design"
   validation_method = "DNS"
 }
 

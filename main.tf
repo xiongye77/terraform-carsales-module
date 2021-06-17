@@ -6,7 +6,7 @@ module alb {
 source = "./modules/alb"
 vpc_id = module.vpc.CarSales-VPC-ID
 vpc_subnets  = module.vpc.public_subnets
-certificate_arn    = module.acm.certificate_arn
+#certificate_arn    = module.acm.certificate_arn
 }
 
 module key {
@@ -58,10 +58,10 @@ alb_dns_name = module.alb.alb_dns_name
 alb_dns_zone_id = module.alb.alb_dns_zone_id
 }
 
-module acm {
-source  = "./modules/acm"
-
+#module acm {
+#source  = "./modules/acm"
+#
 #domain_name  = trimsuffix(module.alb.alb_dns_name, ".")
-zone_id      = module.alb.alb_dns_zone_id
-
-}
+#zone_id      = module.alb.alb_dns_zone_id
+#
+#}
