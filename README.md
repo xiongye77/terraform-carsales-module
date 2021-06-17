@@ -28,4 +28,6 @@ I use "aws_region" "current" {} to get region  it will be set by export AWS_DEFA
 terraform init 
 terraform apply -auto-approve 
 
+It will save terraform state file locally, however check my another repo for use S3 to save it https://github.com/xiongye77/terraform-carsales.git
+
 the outputs.tf will include ALB DNS name and Route53 alias 
