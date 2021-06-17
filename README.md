@@ -31,3 +31,11 @@ terraform apply -auto-approve
 It will save terraform state file locally, however check my another repo for use S3 to save it https://github.com/xiongye77/terraform-carsales.git
 
 the outputs.tf will include ALB DNS name and Route53 alias 
+
+
+Outputs:
+
+alb_dns_addr = "myapps-test.aconex.design"
+alb_url_addr = "carsales-alb-600746898.ap-southeast-2.elb.amazonaws.com"
+
+use http://myapps-test.aconex.design  to verify http to https redirect
