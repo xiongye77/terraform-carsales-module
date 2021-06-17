@@ -2,7 +2,7 @@
 git clone https://github.com/xiongye77/terraform-carsales-module.git
 
 
-run tree command to check its directory 
+run "tree" command to check its directory 
 
 
 Make sure you change modules/route53/data.tf  "aconex.design" to your route53 registered domain
